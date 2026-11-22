@@ -75,9 +75,9 @@ window.Qareeb.translations = {
     filterAllCategories: "All Categories",
     filterPriceTier: "Price Range",
     filterPriceAll: "All Prices",
-    filterPriceBudget: "$ Budget-Friendly",
-    filterPriceMid: "$$ Standard",
-    filterPricePremium: "$$$ Luxury",
+    filterPriceBudget: "Budget-Friendly",
+    filterPriceMid: "Standard",
+    filterPricePremium: "Premium",
     filterRating: "Minimum Rating",
     filterRatingAll: "Any Rating",
     filterRating45: "4.5 & up",
@@ -186,7 +186,7 @@ window.Qareeb.translations = {
     btnAddService: "Add New Service",
     serviceName: "Service Title",
     serviceCategory: "Category",
-    servicePrice: "Price ($)",
+    servicePrice: "Price (EGP)",
     serviceDuration: "Duration (min)",
     serviceStatus: "Status",
     serviceActive: "Active",
@@ -338,9 +338,9 @@ window.Qareeb.translations = {
     filterAllCategories: "كافة الفئات",
     filterPriceTier: "مستوى الأسعار",
     filterPriceAll: "كافة الأسعار",
-    filterPriceBudget: "$ اقتصادي ومناسب",
-    filterPriceMid: "$$ متوسط",
-    filterPricePremium: "$$$ فاخر ومميز",
+    filterPriceBudget: "اقتصادي ومناسب",
+    filterPriceMid: "متوسط",
+    filterPricePremium: "فاخر ومميز",
     filterRating: "التقييم الأدنى",
     filterRatingAll: "أي تقييم",
     filterRating45: "4.5 نجوم فما فوق",
@@ -449,7 +449,7 @@ window.Qareeb.translations = {
     btnAddService: "إضافة خدمة جديدة",
     serviceName: "اسم الخدمة",
     serviceCategory: "الفئة",
-    servicePrice: "السعر ($)",
+    servicePrice: "السعر (ج.م)",
     serviceDuration: "المدة (دقيقة)",
     serviceStatus: "الحالة",
     serviceActive: "مفعلة",
@@ -530,4 +530,14 @@ window.Qareeb.translations = {
     footerCopy: "© 2026 منصة قريب لخدمات الحجز. كافة الحقوق محفوظة. نموذج تفاعلي للواجهة.",
     footerDisclaimer: "تنبيه: هذا الموقع عبارة عن نموذج واجهة مستخدم تجريبي فقط. لا تتم أي معاملات مالية أو عمليات حجز حقيقية."
   }
+};
+
+window.Qareeb.formatCurrency = function(amount, lang) {
+  const currentLang = lang || (window.Qareeb.state && window.Qareeb.state.currentLang) || document.documentElement.lang || "en";
+  return new Intl.NumberFormat(currentLang === "ar" ? "ar-EG" : "en-EG", {
+    style: "currency",
+    currency: "EGP",
+    currencyDisplay: currentLang === "ar" ? "symbol" : "code",
+    maximumFractionDigits: 0
+  }).format(Number(amount) || 0);
 };

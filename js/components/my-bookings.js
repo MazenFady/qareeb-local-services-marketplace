@@ -120,7 +120,7 @@ window.Qareeb.components.MyBookings = function() {
                       </div>
                       <div>
                         <span class="text-muted">${currentLang === 'ar' ? 'السعر للدفع:' : 'Price:'}</span>
-                        <strong class="text-primary">$${booking.price}</strong>
+                        <strong class="text-primary">${window.Qareeb.formatCurrency(booking.price, currentLang)}</strong>
                       </div>
                     </div>
                   </div>

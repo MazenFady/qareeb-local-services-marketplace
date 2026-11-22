@@ -10,4 +10,6 @@ A bilingual, responsive UI prototype for browsing and booking local services. Th
 
 The demo role switcher lets you explore customer, provider, and platform-admin experiences. Booking and dashboard actions use mock data.
 
+Displayed prices use Egyptian pounds (EGP / ج.م) and are illustrative demo values. They are not verified market prices. Category counts reflect the provider records in the mock data; some categories currently have no demo providers.
+
 See PROTOTYPE_PROGRESS.md for the screen-by-screen handoff and future implementation notes.

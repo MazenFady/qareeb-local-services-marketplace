@@ -112,7 +112,7 @@ window.Qareeb.components.AdminPortal = function() {
               <div class="stat-kpi-card">
                 <div class="stat-kpi-icon" style="background: var(--success-subtle); color: var(--success-text);">💳</div>
                 <div>
-                  <div class="stat-kpi-value text-success">${adminStats.grossVolume}</div>
+                  <div class="stat-kpi-value text-success">${window.Qareeb.formatCurrency(adminStats.grossVolume, currentLang)}</div>
                   <div class="stat-kpi-label">${t("adminKpiGMV")}</div>
                   <span class="stat-kpi-trend text-success">↑ High</span>
                 </div>
@@ -301,7 +301,7 @@ window.Qareeb.components.AdminPortal = function() {
                         <td>${prov}</td>
                         <td>${srv}</td>
                         <td>${b.dateStr} @ ${b.timeStr}</td>
-                        <td><strong>$${b.price}</strong></td>
+                        <td><strong>${window.Qareeb.formatCurrency(b.price, currentLang)}</strong></td>
                         <td>
                           ${b.status === 'confirmed' ? `<span class="badge badge-emerald">✓ Confirmed</span>` : ''}
                           ${b.status === 'pending' ? `<span class="badge badge-amber">⏳ Pending</span>` : ''}

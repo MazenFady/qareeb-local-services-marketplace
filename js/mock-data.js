@@ -1,21 +1,27 @@
 /**
  * Qareeb (قريب) — Realistic Mock Data Engine
- * High fidelity mock data for Barbers, Salons, Spas, Bookings, Applications & Reviews.
+ * High-fidelity mock data for Barbers, Doctors, Beauty Centers, Salons, Spas.
+ * All prices are sample EGP values for demo purposes only.
+ * This prototype is not connected to any real backend or pricing system.
  */
 window.Qareeb = window.Qareeb || {};
 
 window.Qareeb.mockData = {
   // Service Categories
+  // counts: derived from actual providers array length per category (others shown as 0 for honesty)
   categories: [
-    { id: "barber", icon: "✂️", nameEn: "Barbershops & Grooming", nameAr: "صالونات الحلاقة والعناية الرجالية", count: 28 },
-    { id: "hair", icon: "💇", nameEn: "Hair Salons & Styling", nameAr: "تصفيف وتلوين الشعر", count: 42 },
-    { id: "nails", icon: "💅", nameEn: "Nails & Pedicure", nameAr: "العناية بالأظافر والبديكير", count: 19 },
-    { id: "spa", icon: "🌿", nameEn: "Spa & Massage Therapy", nameAr: "السبا والتدليك العلاجي", count: 24 },
-    { id: "facial", icon: "✨", nameEn: "Skincare & Facials", nameAr: "العناية بالبشرة والفيشل", count: 16 },
-    { id: "makeup", icon: "💄", nameEn: "Bridal & Makeup", nameAr: "المكياج وإطلالات المناسبات", count: 14 }
+    { id: "barber", icon: "✂️", nameEn: "Barbershops & Grooming", nameAr: "صالونات الحلاقة والعناية الرجالية", count: 1 },
+    { id: "hair", icon: "💇", nameEn: "Hair Salons & Styling", nameAr: "تصفيف وتلوين الشعر", count: 1 },
+    { id: "nails", icon: "💅", nameEn: "Nails & Pedicure", nameAr: "العناية بالأظافر والبديكير", count: 1 },
+    { id: "spa", icon: "🌿", nameEn: "Spa & Massage Therapy", nameAr: "السبا والتدليك العلاجي", count: 1 },
+    { id: "facial", icon: "✨", nameEn: "Skincare & Laser Centers", nameAr: "العناية بالبشرة ومراكز الليزر", count: 1 },
+    { id: "doctors", icon: "🩺", nameEn: "Doctors & Medical Clinics", nameAr: "أطباء وعيادات طبية", count: 0 },
+    { id: "makeup", icon: "💄", nameEn: "Bridal & Makeup", nameAr: "المكياج وإطلالات المناسبات", count: 0 },
+    { id: "other", icon: "📍", nameEn: "Other Local Services", nameAr: "خدمات محلية أخرى", count: 0 }
   ],
 
   // Local Service Providers
+  // Sample prices are illustrative EGP (Egyptian pound) values for the prototype only.
   providers: [
     {
       id: "prov-1",
@@ -24,10 +30,10 @@ window.Qareeb.mockData = {
       category: "barber",
       rating: 4.9,
       reviewsCount: 184,
-      priceTier: "$$",
-      startingPrice: 35,
-      neighborhoodEn: "Downtown, Al Olaya",
-      neighborhoodAr: "وسط المدينة، حي العليا",
+      priceTier: "standard",
+      startingPrice: 200,
+      neighborhoodEn: "Heliopolis, Cairo",
+      neighborhoodAr: "مصر الجديدة، القاهرة",
       distanceEn: "1.2 km away",
       distanceAr: "على بعد 1.2 كم",
       heroImage: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1200&q=80",
@@ -51,10 +57,10 @@ window.Qareeb.mockData = {
         { id: "st-3", nameEn: "Karim Samir", nameAr: "كريم سمير", titleEn: "Senior Grooming Consultant", titleAr: "استشاري العناية والبشرة", rating: 4.9, image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80" }
       ],
       services: [
-        { id: "srv-101", titleEn: "Signature Executive Haircut", titleAr: "قصة الشعر الملكية الخاصة", descEn: "Includes consultation, precision scissor cut, energizing hair wash & style.", descAr: "تشمل استشارة، قص دقيق بالمقص والمكينة، غسيل منشط وتصفيف نهائي.", price: 40, duration: 45, categoryEn: "Haircuts", categoryAr: "قصات الشعر" },
-        { id: "srv-102", titleEn: "Artisan Beard Sculpt & Hot Towel", titleAr: "نحت اللحية بالمنشفة الساخنة", descEn: "Blade sculpting, soothing botanical oils, hot and cold towel treatment.", descAr: "تحديد بالشفره مع زيوت ترطيب طبيعية، وعلاج بالمنشفة الساخنة والباردة.", price: 25, duration: 30, categoryEn: "Beard Care", categoryAr: "العناية باللحية" },
-        { id: "srv-103", titleEn: "Royal Combo (Hair + Beard + Scalp)", titleAr: "الباقة الملكية المتكاملة (شعر + ذقن + مساج)", descEn: "Our full experience: signature cut, beard sculpting, herbal scalp massage.", descAr: "التجربة الكاملة: قصة شعر مميزة، نحت الذقن، ومساج عشبي لفروة الرأس.", price: 60, duration: 75, categoryEn: "Packages", categoryAr: "الباقات المميزة" },
-        { id: "srv-104", titleEn: "Express Charcoal Facial Detox", titleAr: "تنظيف الوجه السريع بالفحم النشط", descEn: "Deep pore cleansing, dead skin exfoliation, hydrating mist finish.", descAr: "تنظيف مسام عميق، تقشير لطيف للجلد الميت، وترطيب منعش للبشرة.", price: 35, duration: 30, categoryEn: "Skincare", categoryAr: "العناية بالبشرة" }
+        { id: "srv-101", titleEn: "Signature Executive Haircut", titleAr: "قصة الشعر الملكية الخاصة", descEn: "Includes consultation, precision scissor cut, energizing hair wash & style.", descAr: "تشمل استشارة، قص دقيق بالمقص والمكينة، غسيل منشط وتصفيف نهائي.", price: 200, duration: 45, categoryEn: "Haircuts", categoryAr: "قصات الشعر" },
+        { id: "srv-102", titleEn: "Artisan Beard Sculpt & Hot Towel", titleAr: "نحت اللحية بالمنشفة الساخنة", descEn: "Blade sculpting, soothing botanical oils, hot and cold towel treatment.", descAr: "تحديد بالشفره مع زيوت ترطيب طبيعية، وعلاج بالمنشفة الساخنة والباردة.", price: 120, duration: 30, categoryEn: "Beard Care", categoryAr: "العناية باللحية" },
+        { id: "srv-103", titleEn: "Royal Combo (Hair + Beard + Scalp)", titleAr: "الباقة الملكية المتكاملة (شعر + ذقن + مساج)", descEn: "Our full experience: signature cut, beard sculpting, herbal scalp massage.", descAr: "التجربة الكاملة: قصة شعر مميزة، نحت الذقن، ومساج عشبي لفروة الرأس.", price: 300, duration: 75, categoryEn: "Packages", categoryAr: "الباقات المميزة" },
+        { id: "srv-104", titleEn: "Express Charcoal Facial Detox", titleAr: "تنظيف الوجه السريع بالفحم النشط", descEn: "Deep pore cleansing, dead skin exfoliation, hydrating mist finish.", descAr: "تنظيف مسام عميق، تقشير لطيف للجلد الميت، وترطيب منعش للبشرة.", price: 180, duration: 30, categoryEn: "Skincare", categoryAr: "العناية بالبشرة" }
       ],
       gallery: [
         { type: "venue", url: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=800&q=80", captionEn: "Executive styling stations", captionAr: "كراسي الحلاقة الكلاسيكية الفاخرة" },
@@ -75,10 +81,10 @@ window.Qareeb.mockData = {
       category: "facial",
       rating: 4.8,
       reviewsCount: 142,
-      priceTier: "$$$",
-      startingPrice: 55,
-      neighborhoodEn: "Al Rawdah / North Ring",
-      neighborhoodAr: "حي الروضة / الدائري الشمالي",
+      priceTier: "premium",
+      startingPrice: 450,
+      neighborhoodEn: "Zamalek, Cairo",
+      neighborhoodAr: "الزمالك، القاهرة",
       distanceEn: "2.4 km away",
       distanceAr: "على بعد 2.4 كم",
       heroImage: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80",
@@ -101,9 +107,9 @@ window.Qareeb.mockData = {
         { id: "st-22", nameEn: "Lina Al-Hassan", nameAr: "لينا الحسن", titleEn: "Skin Therapist", titleAr: "أخصائية العناية والمساج", rating: 4.8, image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80" }
       ],
       services: [
-        { id: "srv-201", titleEn: "Diamond Glow Hydra-Facial", titleAr: "جلسة هيدرافيشل دايموند جلو", descEn: "Infusion of active peptides and hyaluronic acid with deep vacuum extraction.", descAr: "حقن الببتيدات النشطة وحمض الهيالورونيك مع تنظيف عميق للمسام.", price: 85, duration: 60, categoryEn: "Facials", categoryAr: "جلسات الوجه" },
-        { id: "srv-202", titleEn: "Rose Quartz Face Sculpt & Lymphatic Drainage", titleAr: "مساج نحت الوجه بأحجار الكوارتز", descEn: "De-puffs and lifts facial contours using cold cryo sticks and quartz rollers.", descAr: "تحفيز التصريف اللمفاوي وشد ملامح الوجه بأحجار الكوارتز الباردة.", price: 65, duration: 45, categoryEn: "Facials", categoryAr: "جلسات الوجه" },
-        { id: "srv-203", titleEn: "Aromatherapy Full Body Relaxation", titleAr: "جلسة مساج استرخائي بالزيوت العطرية", descEn: "Pure organic lavender & eucalyptus essential oils with medium pressure.", descAr: "تدليك مهدئ بزيوت اللافندر والكينا العضوية لتخفيف التوتر والإرهاق.", price: 95, duration: 60, categoryEn: "Wellness", categoryAr: "الاسترخاء والسبا" }
+        { id: "srv-201", titleEn: "Diamond Glow Hydra-Facial", titleAr: "جلسة هيدرافيشل دايموند جلو", descEn: "Infusion of active peptides and hyaluronic acid with deep vacuum extraction.", descAr: "حقن الببتيدات النشطة وحمض الهيالورونيك مع تنظيف عميق للمسام.", price: 450, duration: 60, categoryEn: "Facials", categoryAr: "جلسات الوجه" },
+        { id: "srv-202", titleEn: "Rose Quartz Face Sculpt & Lymphatic Drainage", titleAr: "مساج نحت الوجه بأحجار الكوارتز", descEn: "De-puffs and lifts facial contours using cold cryo sticks and quartz rollers.", descAr: "تحفيز التصريف اللمفاوي وشد ملامح الوجه بأحجار الكوارتز الباردة.", price: 350, duration: 45, categoryEn: "Facials", categoryAr: "جلسات الوجه" },
+        { id: "srv-203", titleEn: "Aromatherapy Full Body Relaxation", titleAr: "جلسة مساج استرخائي بالزيوت العطرية", descEn: "Pure organic lavender & eucalyptus essential oils with medium pressure.", descAr: "تدليك مهدئ بزيوت اللافندر والكينا العضوية لتخفيف التوتر والإرهاق.", price: 500, duration: 60, categoryEn: "Wellness", categoryAr: "الاسترخاء والسبا" }
       ],
       gallery: [
         { type: "venue", url: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80", captionEn: "Calm private treatment suite", captionAr: "غرف العلاج والاستجمام الخاصة" },
@@ -121,8 +127,8 @@ window.Qareeb.mockData = {
       category: "hair",
       rating: 4.9,
       reviewsCount: 220,
-      priceTier: "$$$",
-      startingPrice: 50,
+      priceTier: "premium",
+      startingPrice: 650,
       neighborhoodEn: "Al Nakheel District",
       neighborhoodAr: "حي النخيل، طريق التخصصي",
       distanceEn: "3.1 km away",
@@ -146,8 +152,8 @@ window.Qareeb.mockData = {
         { id: "st-31", nameEn: "Chloe Dupont", nameAr: "كلوي دوبون", titleEn: "Artistic Creative Director", titleAr: "المديرة الإبداعية للألوان", rating: 5.0, image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80" }
       ],
       services: [
-        { id: "srv-301", titleEn: "Signature Couture Cut & Blowdry", titleAr: "قص وتصفيف كوتور الاحترافي", descEn: "Personalized hair architecture tailored to face shape and natural texture.", descAr: "قصة شعر مصممة هندسياً بما يلائم ملامح الوجه ونوعية الشعر.", price: 65, duration: 60, categoryEn: "Haircuts", categoryAr: "القص والتصفيف" },
-        { id: "srv-302", titleEn: "Hand-Painted Balayage & Gloss", titleAr: "صبغة بالياج يدوي مع غلوس لمعان", descEn: "Seamless multi-dimensional sun-kissed lightening with bond builder.", descAr: "تفتيح طبيعي متدرج ثلاثي الأبعاد مع حماية ألياف الشعر بالبوند.", price: 160, duration: 150, categoryEn: "Coloring", categoryAr: "الصبغات والهايلايت" }
+        { id: "srv-301", titleEn: "Signature Couture Cut & Blowdry", titleAr: "قص وتصفيف كوتور الاحترافي", descEn: "Personalized hair architecture tailored to face shape and natural texture.", descAr: "قصة شعر مصممة هندسياً بما يلائم ملامح الوجه ونوعية الشعر.", price: 650, duration: 60, categoryEn: "Haircuts", categoryAr: "القص والتصفيف" },
+        { id: "srv-302", titleEn: "Hand-Painted Balayage & Gloss", titleAr: "صبغة بالياج يدوي مع غلوس لمعان", descEn: "Seamless multi-dimensional sun-kissed lightening with bond builder.", descAr: "تفتيح طبيعي متدرج ثلاثي الأبعاد مع حماية ألياف الشعر بالبوند.", price: 1800, duration: 150, categoryEn: "Coloring", categoryAr: "الصبغات والهايلايت" }
       ],
       gallery: [
         { type: "venue", url: "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80", captionEn: "Sunlit studio floor", captionAr: "مساحة الصالون العصرية المضيئة" }
@@ -164,8 +170,8 @@ window.Qareeb.mockData = {
       category: "spa",
       rating: 4.7,
       reviewsCount: 96,
-      priceTier: "$$",
-      startingPrice: 45,
+      priceTier: "standard",
+      startingPrice: 350,
       neighborhoodEn: "Al Malqa / North",
       neighborhoodAr: "حي الملقا / شمال الرياض",
       distanceEn: "4.5 km away",
@@ -189,8 +195,8 @@ window.Qareeb.mockData = {
         { id: "st-41", nameEn: "Youssef Bennani", nameAr: "يوسف البناني", titleEn: "Senior Spa Practitioner", titleAr: "معالج استرخاء أول", rating: 4.8, image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80" }
       ],
       services: [
-        { id: "srv-401", titleEn: "Royal Imperial Moroccan Bath", titleAr: "الحمام الملكي الإمبراطوري", descEn: "Eucalyptus steam, organic black soap, loofah scrub, Ghassoul clay wrap.", descAr: "بخار الكينا، صابون أسود عضوي، تقشير بالكيس، قناع طمي الغاسول المغربي.", price: 70, duration: 60, categoryEn: "Hammam", categoryAr: "الحمام المغربي" },
-        { id: "srv-402", titleEn: "Deep Muscle Recovery Massage", titleAr: "مساج علاجي عميق لتفكيك العضلات", descEn: "Focused trigger point therapy with warm argan oil.", descAr: "تدليك نقطي للضغط لتفكيك التشنجات العضلية بزيت الأركان الدافئ.", price: 65, duration: 60, categoryEn: "Massage", categoryAr: "جلسات التدليك" }
+        { id: "srv-401", titleEn: "Royal Imperial Moroccan Bath", titleAr: "الحمام الملكي الإمبراطوري", descEn: "Eucalyptus steam, organic black soap, loofah scrub, Ghassoul clay wrap.", descAr: "بخار الكينا، صابون أسود عضوي، تقشير بالكيس، قناع طمي الغاسول المغربي.", price: 700, duration: 60, categoryEn: "Hammam", categoryAr: "الحمام المغربي" },
+        { id: "srv-402", titleEn: "Deep Muscle Recovery Massage", titleAr: "مساج علاجي عميق لتفكيك العضلات", descEn: "Focused trigger point therapy with warm argan oil.", descAr: "تدليك نقطي للضغط لتفكيك التشنجات العضلية بزيت الأركان الدافئ.", price: 650, duration: 60, categoryEn: "Massage", categoryAr: "جلسات التدليك" }
       ],
       gallery: [
         { type: "venue", url: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=800&q=80", captionEn: "Warm marble steam chamber", captionAr: "غرفة البخار والرخام الدافئ" }
@@ -207,8 +213,8 @@ window.Qareeb.mockData = {
       category: "nails",
       rating: 4.8,
       reviewsCount: 115,
-      priceTier: "$$",
-      startingPrice: 30,
+      priceTier: "standard",
+      startingPrice: 300,
       neighborhoodEn: "Al Sulaimaniyah",
       neighborhoodAr: "حي السليمانية، شارع العروبة",
       distanceEn: "1.8 km away",
@@ -232,8 +238,8 @@ window.Qareeb.mockData = {
         { id: "st-51", nameEn: "Sarah Kim", nameAr: "سارة كيم", titleEn: "Nail Artist & Russian Manicurist", titleAr: "فنانة أظافر وأخصائية بديكير روسي", rating: 4.9, image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80" }
       ],
       services: [
-        { id: "srv-501", titleEn: "Russian Dry Manicure & Biab Gel", titleAr: "مانيكير روسي جاف مع جل بياب المقوي", descEn: "Ultra-clean e-file cuticle work with builder gel strengthening.", descAr: "تنظيف دقيق للزوائد بالرؤوس الدوارة مع طبقة جل مغذية ومقوية للأظافر.", price: 50, duration: 60, categoryEn: "Nails", categoryAr: "الأظافر" },
-        { id: "srv-502", titleEn: "Detox Spa Pedicure & Foot Massage", titleAr: "بديكير سبا بالملح البحري ومساج القدمين", descEn: "Dead Sea salt soak, callused skin smoothing, organic shea butter massage.", descAr: "نقع بأملاح البحر الميت، تنعيم الكعب، وتدليك بزبدة الشيا العضوية.", price: 45, duration: 50, categoryEn: "Pedicure", categoryAr: "البديكير" }
+        { id: "srv-501", titleEn: "Russian Dry Manicure & Biab Gel", titleAr: "مانيكير روسي جاف مع جل بياب المقوي", descEn: "Ultra-clean e-file cuticle work with builder gel strengthening.", descAr: "تنظيف دقيق للزوائد بالرؤوس الدوارة مع طبقة جل مغذية ومقوية للأظافر.", price: 350, duration: 60, categoryEn: "Nails", categoryAr: "الأظافر" },
+        { id: "srv-502", titleEn: "Detox Spa Pedicure & Foot Massage", titleAr: "بديكير سبا بالملح البحري ومساج القدمين", descEn: "Dead Sea salt soak, callused skin smoothing, organic shea butter massage.", descAr: "نقع بأملاح البحر الميت، تنعيم الكعب، وتدليك بزبدة الشيا العضوية.", price: 300, duration: 50, categoryEn: "Pedicure", categoryAr: "البديكير" }
       ],
       gallery: [
         { type: "work", url: "https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=800&q=80", captionEn: "Minimalist French Gel Art", captionAr: "تصميم فرينش ناعم بطلاء الجل" }
@@ -258,7 +264,7 @@ window.Qareeb.mockData = {
       specialistNameAr: "عمر المنصور",
       dateStr: "Tomorrow",
       timeStr: "3:30 PM",
-      price: 40,
+      price: 200,
       duration: 45,
       status: "confirmed", // confirmed | pending | completed | cancelled
       notesEn: "First visit, prefer low fade.",
@@ -277,7 +283,7 @@ window.Qareeb.mockData = {
       specialistNameAr: "د. إيلينا فانس",
       dateStr: "Nov 22, 2026",
       timeStr: "5:00 PM",
-      price: 85,
+      price: 450,
       duration: 60,
       status: "pending",
       notesEn: "Sensitive skin around cheeks.",
@@ -296,7 +302,7 @@ window.Qareeb.mockData = {
       specialistNameAr: "يوسف البناني",
       dateStr: "Nov 10, 2026",
       timeStr: "4:00 PM",
-      price: 70,
+      price: 700,
       duration: 60,
       status: "completed",
       notesEn: "Excellent service.",
@@ -307,17 +313,17 @@ window.Qareeb.mockData = {
 
   // Service Provider Today's Schedule & Requests (for "prov-1")
   providerSchedule: [
-    { id: "slot-1", time: "10:30 AM", clientName: "Fahad Al-Hassan", serviceEn: "Signature Haircut", serviceAr: "قصة شعر كلاسيكية", specialistEn: "Omar Al-Mansoor", specialistAr: "عمر المنصور", price: 40, status: "completed" },
-    { id: "slot-2", time: "11:45 AM", clientName: "Khalid Bin Sultan", serviceEn: "Beard Sculpt & Hot Towel", serviceAr: "نحت اللحية والمنشفة الساخنة", specialistEn: "Tariq Zayn", specialistAr: "طارق زين", price: 25, status: "completed" },
-    { id: "slot-3", time: "02:15 PM", clientName: "Rakan Al-Ghamdi", serviceEn: "Royal Combo (Hair + Beard)", serviceAr: "الباقة الملكية المتكاملة", specialistEn: "Omar Al-Mansoor", specialistAr: "عمر المنصور", price: 60, status: "confirmed" },
-    { id: "slot-4", time: "03:45 PM", clientName: "Majed Al-Mutlaq", serviceEn: "Signature Haircut", serviceAr: "قصة شعر كلاسيكية", specialistEn: "Karim Samir", specialistAr: "كريم سمير", price: 40, status: "confirmed" },
-    { id: "slot-5", time: "05:15 PM", clientName: "Nasser Al-Dahlawi", serviceEn: "Express Charcoal Facial", serviceAr: "تنظيف الوجه بالفحم", specialistEn: "Karim Samir", specialistAr: "كريم سمير", price: 35, status: "confirmed" }
+    { id: "slot-1", time: "10:30 AM", clientName: "Fahad Al-Hassan", serviceEn: "Signature Haircut", serviceAr: "قصة شعر كلاسيكية", specialistEn: "Omar Al-Mansoor", specialistAr: "عمر المنصور", price: 200, status: "completed" },
+    { id: "slot-2", time: "11:45 AM", clientName: "Khalid Bin Sultan", serviceEn: "Beard Sculpt & Hot Towel", serviceAr: "نحت اللحية والمنشفة الساخنة", specialistEn: "Tariq Zayn", specialistAr: "طارق زين", price: 120, status: "completed" },
+    { id: "slot-3", time: "02:15 PM", clientName: "Rakan Al-Ghamdi", serviceEn: "Royal Combo (Hair + Beard)", serviceAr: "الباقة الملكية المتكاملة", specialistEn: "Omar Al-Mansoor", specialistAr: "عمر المنصور", price: 300, status: "confirmed" },
+    { id: "slot-4", time: "03:45 PM", clientName: "Majed Al-Mutlaq", serviceEn: "Signature Haircut", serviceAr: "قصة شعر كلاسيكية", specialistEn: "Karim Samir", specialistAr: "كريم سمير", price: 200, status: "confirmed" },
+    { id: "slot-5", time: "05:15 PM", clientName: "Nasser Al-Dahlawi", serviceEn: "Express Charcoal Facial", serviceAr: "تنظيف الوجه بالفحم", specialistEn: "Karim Samir", specialistAr: "كريم سمير", price: 180, status: "confirmed" }
   ],
 
   // Incoming booking requests for the provider
   incomingRequests: [
-    { id: "req-1", clientName: "Sami Al-Harbi", phone: "+966 50 442 8199", serviceEn: "Royal Combo (Hair + Beard)", serviceAr: "الباقة الملكية المتكاملة", timeEn: "Today at 6:45 PM", timeAr: "اليوم الساعة 6:45 م", price: 60, specialistEn: "Omar Al-Mansoor", specialistAr: "عمر المنصور" },
-    { id: "req-2", clientName: "Bader Al-Shammari", phone: "+966 55 901 3211", serviceEn: "Artisan Beard Sculpt", serviceAr: "نحت اللحية بالمنشفة الساخنة", timeEn: "Tomorrow at 1:15 PM", timeAr: "غداً الساعة 1:15 م", price: 25, specialistEn: "Tariq Zayn", specialistAr: "طارق زين" }
+    { id: "req-1", clientName: "Sami Al-Harbi", phone: "+20 10 4428 1990", serviceEn: "Royal Combo (Hair + Beard)", serviceAr: "الباقة الملكية المتكاملة", timeEn: "Today at 6:45 PM", timeAr: "اليوم الساعة 6:45 م", price: 300, specialistEn: "Omar Al-Mansoor", specialistAr: "عمر المنصور" },
+    { id: "req-2", clientName: "Bader Al-Shammari", phone: "+20 11 9013 2110", serviceEn: "Artisan Beard Sculpt", serviceAr: "نحت اللحية بالمنشفة الساخنة", timeEn: "Tomorrow at 1:15 PM", timeAr: "غداً الساعة 1:15 م", price: 120, specialistEn: "Tariq Zayn", specialistAr: "طارق زين" }
   ],
 
   // Provider Working Hours Settings
@@ -336,7 +342,7 @@ window.Qareeb.mockData = {
     activeProviders: 148,
     registeredCustomers: "4,230",
     monthlyBookings: "12,850",
-    grossVolume: "$412,500",
+    grossVolume: 412500,
     satisfactionScore: "4.9 / 5"
   },
 
@@ -400,7 +406,7 @@ window.Qareeb.mockData = {
       reviewerName: "Tariq K.",
       date: "Nov 14, 2026",
       flagReasonKey: "flagDispute",
-      reportedTextEn: "They charged me $10 extra for special soap that wasn't listed on the app menu.",
+      reportedTextEn: "They charged me 100 EGP extra for special soap that wasn't listed on the app menu.",
       reportedTextAr: "طلبوا مني مبلغ 10 دولارات إضافية مقابل صابون خاص لم يكن مذكوراً في القائمة داخل التطبيق.",
       status: "pending"
     }
