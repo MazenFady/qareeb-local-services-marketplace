@@ -103,7 +103,7 @@ window.Qareeb.components.BookingModal = function() {
                     </div>
 
                     <div class="text-base font-extrabold text-primary">
-                      $${srv.price}
+                      ${window.Qareeb.formatCurrency(srv.price, currentLang)}
                     </div>
                   </div>
                 `;
@@ -241,7 +241,7 @@ window.Qareeb.components.BookingModal = function() {
                 </div>
                 <div class="flex justify-between text-base py-2 mt-1" style="border-top: 1px solid var(--border-subtle);">
                   <span class="font-bold text-primary">${t("bookingTotalPrice")}:</span>
-                  <span class="font-extrabold text-brand">$${totalPrice}</span>
+                  <span class="font-extrabold text-brand">${window.Qareeb.formatCurrency(totalPrice, currentLang)}</span>
                 </div>
               </div>
 
@@ -264,7 +264,7 @@ window.Qareeb.components.BookingModal = function() {
                   class="form-input" 
                   value="${bookingModal.clientPhone || ''}"
                   oninput="window.Qareeb.actions.updateBookingField('clientPhone', this.value)"
-                  placeholder="+966 50 123 4567"
+                  placeholder="+20 10 1234 5678"
                 />
               </div>
 
@@ -347,7 +347,7 @@ window.Qareeb.components.BookingModal = function() {
             <div class="flex items-center gap-3">
               <div class="text-end">
                 <span class="text-xs text-muted block">${currentLang === 'ar' ? 'المجموع:' : 'Total:'}</span>
-                <span class="font-extrabold text-brand text-base">$${totalPrice}</span>
+                <span class="font-extrabold text-brand text-base">${window.Qareeb.formatCurrency(totalPrice, currentLang)}</span>
               </div>
 
               ${step < 4 ? `

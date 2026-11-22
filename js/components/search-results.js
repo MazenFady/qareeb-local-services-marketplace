@@ -147,24 +147,24 @@ window.Qareeb.components.SearchResults = function() {
               <div class="grid grid-cols-3 gap-2">
                 <button 
                   type="button" 
-                  class="btn btn-sm ${searchFilters.priceTier === '$' ? 'btn-primary' : 'btn-secondary'}"
-                  onclick="window.Qareeb.actions.updateSearchFilters({ priceTier: searchFilters.priceTier === '$' ? 'all' : '$' })"
+                  class="btn btn-sm ${searchFilters.priceTier === 'budget' ? 'btn-primary' : 'btn-secondary'}"
+                  onclick="window.Qareeb.actions.updateSearchFilters({ priceTier: searchFilters.priceTier === 'budget' ? 'all' : 'budget' })"
                 >
-                  $
+                  ${t("filterPriceBudget")}
                 </button>
                 <button 
                   type="button" 
-                  class="btn btn-sm ${searchFilters.priceTier === '$$' ? 'btn-primary' : 'btn-secondary'}"
-                  onclick="window.Qareeb.actions.updateSearchFilters({ priceTier: searchFilters.priceTier === '$$' ? 'all' : '$$' })"
+                  class="btn btn-sm ${searchFilters.priceTier === 'standard' ? 'btn-primary' : 'btn-secondary'}"
+                  onclick="window.Qareeb.actions.updateSearchFilters({ priceTier: searchFilters.priceTier === 'standard' ? 'all' : 'standard' })"
                 >
-                  $$
+                  ${t("filterPriceMid")}
                 </button>
                 <button 
                   type="button" 
-                  class="btn btn-sm ${searchFilters.priceTier === '$$$' ? 'btn-primary' : 'btn-secondary'}"
-                  onclick="window.Qareeb.actions.updateSearchFilters({ priceTier: searchFilters.priceTier === '$$$' ? 'all' : '$$$' })"
+                  class="btn btn-sm ${searchFilters.priceTier === 'premium' ? 'btn-primary' : 'btn-secondary'}"
+                  onclick="window.Qareeb.actions.updateSearchFilters({ priceTier: searchFilters.priceTier === 'premium' ? 'all' : 'premium' })"
                 >
-                  $$$
+                  ${t("filterPricePremium")}
                 </button>
               </div>
             </div>
@@ -260,7 +260,7 @@ window.Qareeb.components.SearchResults = function() {
                         <div class="provider-footer">
                           <div class="provider-price">
                             <span class="text-xs text-muted block">${t("priceStartsAt")}</span>
-                            <strong>$${p.startingPrice}</strong>
+                            <strong>${window.Qareeb.formatCurrency(p.startingPrice, currentLang)}</strong>
                           </div>
 
                           <div class="flex items-center gap-2">

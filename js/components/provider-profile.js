@@ -134,7 +134,7 @@ window.Qareeb.components.ProviderProfile = function() {
 
                       <div class="flex sm:flex-col items-center sm:items-end justify-between w-full sm:w-auto gap-3 flex-shrink-0">
                         <div class="text-lg font-extrabold text-primary">
-                          $${srv.price}
+                          ${window.Qareeb.formatCurrency(srv.price, currentLang)}
                         </div>
                         <button 
                           type="button" 

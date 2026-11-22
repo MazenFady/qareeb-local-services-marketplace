@@ -51,7 +51,7 @@ window.Qareeb.components.CustomerHome = function() {
           <div class="provider-footer">
             <div class="provider-price">
               <span class="text-xs text-muted block">${t("priceStartsAt")}</span>
-              <strong>$${p.startingPrice}</strong>
+              <strong>${window.Qareeb.formatCurrency(p.startingPrice, currentLang)}</strong>
             </div>
 
             <div class="flex items-center gap-2">
@@ -178,6 +178,7 @@ window.Qareeb.components.CustomerHome = function() {
             ${categories.map(cat => {
               const name = currentLang === "ar" ? cat.nameAr : cat.nameEn;
               const isActive = searchFilters.category === cat.id;
+              const providerCount = providers.filter(provider => provider.category === cat.id).length;
 
               return `
                 <div 
@@ -188,7 +189,7 @@ window.Qareeb.components.CustomerHome = function() {
                     <span>${cat.icon}</span>
                   </div>
                   <div class="font-bold text-sm text-primary line-clamp-2">${name}</div>
-                  <span class="text-xs text-muted">${cat.count} ${currentLang === 'ar' ? 'مركز' : 'spots'}</span>
+                  <span class="text-xs text-muted">${providerCount} ${currentLang === 'ar' ? 'مركز' : 'providers'}</span>
                 </div>
               `;
             }).join("")}

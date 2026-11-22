@@ -152,7 +152,7 @@ window.Qareeb.components.ProviderPortal = function() {
               <div class="stat-kpi-card">
                 <div class="stat-kpi-icon" style="background: var(--success-subtle); color: var(--success-text);">💰</div>
                 <div>
-                  <div class="stat-kpi-value text-success">$${totalRevenue}</div>
+                  <div class="stat-kpi-value text-success">${window.Qareeb.formatCurrency(totalRevenue, currentLang)}</div>
                   <div class="stat-kpi-label">${t("statTodayEarnings")}</div>
                 </div>
               </div>
@@ -198,7 +198,7 @@ window.Qareeb.components.ProviderPortal = function() {
                               <span class="font-bold text-sm text-primary block">${req.clientName}</span>
                               <span class="text-xs text-muted">📞 ${req.phone}</span>
                             </div>
-                            <span class="font-extrabold text-brand text-base">$${req.price}</span>
+                            <span class="font-extrabold text-brand text-base">${window.Qareeb.formatCurrency(req.price, currentLang)}</span>
                           </div>
 
                           <div class="text-xs text-secondary">
@@ -261,7 +261,7 @@ window.Qareeb.components.ProviderPortal = function() {
                           </div>
 
                           <div class="flex items-center justify-between text-xs pt-2" style="border-top: 1px solid var(--border-subtle);">
-                            <span class="font-bold text-primary">$${slot.price}</span>
+                            <span class="font-bold text-primary">${window.Qareeb.formatCurrency(slot.price, currentLang)}</span>
                             ${!isDone ? `
                               <button 
                                 type="button" 
@@ -320,7 +320,7 @@ window.Qareeb.components.ProviderPortal = function() {
                 </div>
                 <div>
                   <label class="form-label">${t("servicePrice")}</label>
-                  <input type="number" id="new-srv-price" class="form-input text-xs" placeholder="45" />
+                  <input type="number" id="new-srv-price" class="form-input text-xs" placeholder="250" />
                 </div>
                 <div>
                   <label class="form-label">${t("serviceDuration")}</label>
@@ -373,7 +373,7 @@ window.Qareeb.components.ProviderPortal = function() {
                           <div class="text-xs text-muted">${srv.descEn || ''}</div>
                         </td>
                         <td><span class="badge badge-gray">${cat}</span></td>
-                        <td><strong>$${srv.price}</strong></td>
+                        <td><strong>${window.Qareeb.formatCurrency(srv.price, currentLang)}</strong></td>
                         <td>${srv.duration} min</td>
                         <td><span class="badge badge-success">✓ ${t("serviceActive")}</span></td>
                         <td style="text-align: end;">

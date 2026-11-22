@@ -34,13 +34,13 @@ A prominent **Demo Role Switcher** is pinned to the top of every screen, allowin
 #### 2.2 Customer Experience
 - **Distinctive Homepage**:
   - **Hero Discovery Section**: Headline with verified provider count badge, description, and an integrated search box with inputs for Service Keyword, Location/Neighborhood, Availability Date dropdown ("Today", "Tomorrow", "This Weekend"), and "Find Services" action.
-  - **Popular Service Categories**: Grid of 6 interactive category cards with counts (Barbershops & Grooming, Hair Salons & Styling, Nails & Pedicure, Spa & Massage Therapy, Skincare & Facials, Bridal & Makeup). Clicking any card filters the search directory.
+  - **Popular Service Categories**: Interactive category cards covering barbers, hair and beauty, skincare and laser, doctors and medical clinics, bridal and makeup, and other local services. Counts reflect current mock provider records; categories without mock providers show zero.
   - **"Available Today" Section**: Filtered showcase of providers with verified same-day openings to bypass waitlists.
   - **"Popular Near You" Section**: Neighborhood-trending salons with high customer engagement.
   - **"Top-Rated Specialists" Section**: Curated leaderboard of providers sorted by review ratings (4.9★+).
   - **Trust & Value Highlights**: Three-pillar cards highlighting 100% Vetted & Licensed partners, Real-Time Instant Slots, and Verified Client Reviews.
 - **Search & Discovery Page**:
-  - **Refinement Sidebar**: Filter by keyword, neighborhood/city, category, price tier (`$`, `$$`, `$$$`), minimum rating (Any, 4.0+, 4.5+), and availability ("Anytime" vs "Available Today only").
+  - **Refinement Sidebar**: Filter by keyword, neighborhood/city, category, price tier (Budget-Friendly, Standard, Premium), minimum rating (Any, 4.0+, 4.5+), and availability ("Anytime" vs "Available Today only").
   - **Sorting**: Instant sorting by Recommended, Highest Rated, and Lowest Price.
   - **Provider Cards**: Rich cards with venue photos, instant booking / top-rated badges, verified ratings with review counts, distance indicator, next available time slot, starting price, and "View Details" & "Book Appointment" buttons.
   - **Empty State**: Friendly fallback card with one-click filter reset when search yields no matches.
@@ -71,7 +71,7 @@ A prominent **Demo Role Switcher** is pinned to the top of every screen, allowin
 #### 2.3 Service Provider Experience (Provider Portal)
 - **Operations Dashboard**:
   - **Header & Live Controls**: Displays active provider name ("The Royal Fade Gentlemen's Lounge"), online status badge, "Public Preview" shortcut, and "Take a Break / Vacation Mode" toggle.
-  - **Today's KPI Cards**: Today's Bookings count, Pending Approval count, Estimated Daily Revenue ($), and Slot Occupancy (%).
+  - **Today's KPI Cards**: Today's Bookings count, Pending Approval count, Estimated Daily Revenue (EGP), and Slot Occupancy (%).
   - **Incoming Booking Requests Queue**: Live cards showing client name, phone, requested service, specialist, and price. Includes **Accept Request** (moves request into today's timeline and updates stats) and **Decline** (dismisses request with notification).
   - **Today's Schedule Timeline**: Chronological hourly schedule with client names, services, and an interactive **Mark as Completed** button that updates booking status live.
 - **Services & Prices Manager**:
@@ -87,7 +87,7 @@ A prominent **Demo Role Switcher** is pinned to the top of every screen, allowin
 
 #### 2.4 Platform Administrator Experience (Admin Console)
 - **Overview Dashboard & KPI Stats**:
-  - High-level marketplace metrics: Active Providers (148), Registered Clients (4,230), Monthly Bookings (12,850), Gross Volume ($412,500), and Platform Satisfaction (4.9 / 5).
+  - High-level marketplace metrics: Active Providers (148), Registered Clients (4,230), Monthly Bookings (12,850), Gross Volume (EGP 412,500), and Platform Satisfaction (4.9 / 5). These are illustrative mock metrics.
   - Action Required Queue highlighting pending verifications and flagged dispute tickets.
   - Regional platform health statistics (verification speed, booking completion rate, dispute resolution rate).
 - **Provider Approval Queue**:
