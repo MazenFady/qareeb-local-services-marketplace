@@ -65,6 +65,7 @@ window.Qareeb.translations = {
     badgeTopRated: "Top Rated",
     badgeAvailableNow: "Available in 30m",
     btnViewProfile: "View Details",
+    btnBackToSearch: "Back to Search",
     btnQuickBook: "Book Appointment",
     priceStartsAt: "Starts from",
 
@@ -328,6 +329,7 @@ window.Qareeb.translations = {
     badgeTopRated: "الأعلى تقييماً",
     badgeAvailableNow: "متاح بعد 30 دقيقة",
     btnViewProfile: "عرض التفاصيل",
+    btnBackToSearch: "العودة إلى البحث",
     btnQuickBook: "حجز موعد",
     priceStartsAt: "يبدأ من",
 

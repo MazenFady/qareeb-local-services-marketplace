@@ -107,6 +107,7 @@ window.Qareeb = window.Qareeb || {};
 
     root.innerHTML = `
       ${Navigation()}
+      ${window.Qareeb.account.bar()}
       <div id="main-content-wrapper" style="min-height: 80vh; display: flex; flex-direction: column;">
         ${mainViewHtml}
       </div>
@@ -125,5 +126,6 @@ window.Qareeb = window.Qareeb || {};
     document.documentElement.setAttribute("lang", state.currentLang);
     document.documentElement.setAttribute("dir", state.currentLang === "ar" ? "rtl" : "ltr");
     renderApp();
+    window.Qareeb.discovery?.initialize();
   });
 })();

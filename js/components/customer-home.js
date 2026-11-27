@@ -6,7 +6,7 @@ window.Qareeb.components = window.Qareeb.components || {};
 
 window.Qareeb.components.CustomerHome = function() {
   const { currentLang, searchFilters } = window.Qareeb.state;
-  const { categories, providers } = window.Qareeb.mockData;
+  const { categories, providers } = (window.Qareeb.discovery?.catalog() || window.Qareeb.mockData);
   const t = window.Qareeb.t;
 
   // Filter sections
@@ -178,7 +178,8 @@ window.Qareeb.components.CustomerHome = function() {
             ${categories.map(cat => {
               const name = currentLang === "ar" ? cat.nameAr : cat.nameEn;
               const isActive = searchFilters.category === cat.id;
-              const providerCount = providers.filter(provider => provider.category === cat.id).length;
+              const providerCount = providers.filter(provider =>
+                (provider.categories || [provider.category]).includes(cat.id)).length;
 
               return `
                 <div 

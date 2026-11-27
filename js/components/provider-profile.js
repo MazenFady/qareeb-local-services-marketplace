@@ -6,10 +6,25 @@ window.Qareeb.components = window.Qareeb.components || {};
 
 window.Qareeb.components.ProviderProfile = function() {
   const { currentLang, selectedProviderId } = window.Qareeb.state;
-  const { providers } = window.Qareeb.mockData;
+  const catalog = window.Qareeb.discovery?.catalog() || window.Qareeb.mockData;
   const t = window.Qareeb.t;
 
-  const provider = providers.find(p => p.id === selectedProviderId) || providers[0];
+  const provider = catalog.providers.find(p => p.id === selectedProviderId)
+    || window.Qareeb.discoveryData?.details?.[selectedProviderId];
+  if (!provider) {
+    return `
+      <div class="container py-12 animate-fade-in">
+        <div class="card p-10 text-center">
+          <div style="font-size: 2.5rem; margin-bottom: 1rem;">🔍</div>
+          <h1 class="text-2xl font-extrabold mb-2">${currentLang === 'ar' ? 'مزود الخدمة غير متاح' : 'Provider unavailable'}</h1>
+          <p class="text-sm text-secondary mb-5">${currentLang === 'ar' ? 'قد لا يكون هذا المزود معتمداً أو متاحاً حالياً.' : 'This provider may not be approved or available right now.'}</p>
+          <button class="btn btn-primary" onclick="window.Qareeb.actions.setCustomerView('search')">
+            ${t("btnBackToSearch") || (currentLang === 'ar' ? 'العودة للبحث' : 'Back to Search')}
+          </button>
+        </div>
+      </div>
+    `;
+  }
   const name = currentLang === "ar" ? provider.nameAr : provider.nameEn;
   const bio = currentLang === "ar" ? provider.bioAr : provider.bioEn;
   const address = currentLang === "ar" ? provider.addressAr : provider.addressEn;
@@ -92,15 +107,17 @@ window.Qareeb.components.ProviderProfile = function() {
               <h2 class="text-lg font-bold mb-3">${t("aboutProvider")}</h2>
               <p class="text-secondary text-sm leading-relaxed mb-6">${bio}</p>
 
-              <h3 class="text-sm font-bold uppercase text-muted tracking-wider mb-3">${t("businessHighlights")}</h3>
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                ${provider.highlights.map(hlKey => `
-                  <div class="flex items-center gap-2 p-2 rounded-md" style="background: var(--bg-surface-subtle); border: 1px solid var(--border-subtle);">
-                    <span style="color: var(--primary); font-size: 1rem;">✨</span>
-                    <span class="text-xs font-semibold">${t(hlKey)}</span>
-                  </div>
-                `).join("")}
-              </div>
+              ${(provider.highlights || []).length ? `
+                <h3 class="text-sm font-bold uppercase text-muted tracking-wider mb-3">${t("businessHighlights")}</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  ${provider.highlights.map(hlKey => `
+                    <div class="flex items-center gap-2 p-2 rounded-md" style="background: var(--bg-surface-subtle); border: 1px solid var(--border-subtle);">
+                      <span style="color: var(--primary); font-size: 1rem;">✨</span>
+                      <span class="text-xs font-semibold">${t(hlKey)}</span>
+                    </div>
+                  `).join("")}
+                </div>
+              ` : ''}
             </section>
 
             <!-- Service Menu & Pricing Card -->
@@ -326,39 +343,68 @@ window.Qareeb.components.ProviderProfile = function() {
                 </div>
               </div>
 
-              <!-- Direct Contact & Social Links (WhatsApp, Facebook, Instagram) -->
+              <!-- Direct Contact & Social Links from the public provider record -->
               <div class="flex flex-col gap-2">
-                <a 
-                  href="javascript:void(0)" 
-                  class="btn btn-secondary btn-sm justify-start"
-                  style="border-color: #25D366; color: #16A34A;"
-                  onclick="window.Qareeb.actions.addToast('WhatsApp (' + '${provider.whatsapp}' + '): ' + '${t("socialDemoAlert")}', 'info')"
-                >
-                  <span style="font-size: 1.1rem;">💬</span>
-                  <span class="font-bold">${t("btnChatWhatsapp")}</span>
-                  <span class="text-xs text-muted ms-auto">${provider.whatsapp}</span>
-                </a>
+                ${provider.phone ? `
+                  <a href="tel:${provider.phone.replace(/[^+\d]/g, "")}" class="btn btn-secondary btn-sm justify-start" dir="ltr">
+                    <span style="font-size: 1.1rem;">📞</span>
+                    <span class="font-bold">${currentLang === 'ar' ? 'اتصال مباشر' : 'Call provider'}</span>
+                    <span class="text-xs text-muted ms-auto">${provider.phone}</span>
+                  </a>
+                ` : ''}
+                ${provider.whatsapp ? `
+                  <a
+                    href="javascript:void(0)"
+                    class="btn btn-secondary btn-sm justify-start"
+                    style="border-color: #25D366; color: #16A34A;"
+                    onclick="window.Qareeb.actions.addToast('WhatsApp (' + ${JSON.stringify(provider.whatsapp)} + '): ' + ${JSON.stringify(t("socialDemoAlert"))}, 'info')"
+                  >
+                    <span style="font-size: 1.1rem;">💬</span>
+                    <span class="font-bold">${t("btnChatWhatsapp")}</span>
+                    <span class="text-xs text-muted ms-auto" dir="ltr">${provider.whatsapp}</span>
+                  </a>
+                ` : ''}
+                ${provider.instagram ? `
+                  <a
+                    href="javascript:void(0)"
+                    class="btn btn-secondary btn-sm justify-start"
+                    style="color: #E1306C;"
+                    onclick="window.Qareeb.actions.addToast('Instagram (' + ${JSON.stringify(provider.instagram)} + '): ' + ${JSON.stringify(t("socialDemoAlert"))}, 'info')"
+                  >
+                    <span style="font-size: 1.1rem;">📸</span>
+                    <span>${t("btnInstagram")}</span>
+                    <span class="text-xs text-muted ms-auto" dir="ltr">${provider.instagram}</span>
+                  </a>
+                ` : ''}
+                ${provider.facebook ? `
+                  <a
+                    href="javascript:void(0)"
+                    class="btn btn-secondary btn-sm justify-start"
+                    style="color: #1877F2;"
+                    onclick="window.Qareeb.actions.addToast('Facebook (' + ${JSON.stringify(provider.facebook)} + '): ' + ${JSON.stringify(t("socialDemoAlert"))}, 'info')"
+                  >
+                    <span style="font-size: 1.1rem;">🌐</span>
+                    <span>${t("btnFacebook")}</span>
+                  </a>
+                ` : ''}
+              </div>
+            </section>
 
-                <a 
-                  href="javascript:void(0)" 
-                  class="btn btn-secondary btn-sm justify-start"
-                  style="color: #E1306C;"
-                  onclick="window.Qareeb.actions.addToast('Instagram (' + '${provider.instagram}' + '): ' + '${t("socialDemoAlert")}', 'info')"
-                >
-                  <span style="font-size: 1.1rem;">📸</span>
-                  <span>${t("btnInstagram")}</span>
-                  <span class="text-xs text-muted ms-auto">${provider.instagram}</span>
-                </a>
-
-                <a 
-                  href="javascript:void(0)" 
-                  class="btn btn-secondary btn-sm justify-start"
-                  style="color: #1877F2;"
-                  onclick="window.Qareeb.actions.addToast('Facebook: ' + '${t("socialDemoAlert")}', 'info')"
-                >
-                  <span style="font-size: 1.1rem;">🌐</span>
-                  <span>${t("btnFacebook")}</span>
-                </a>
+            <!-- Published Opening Hours -->
+            <section class="card p-6">
+              <h3 class="text-base font-bold mb-3">${currentLang === 'ar' ? 'ساعات العمل' : 'Opening Hours'}</h3>
+              <div class="flex flex-col gap-2">
+                ${(provider.hours || []).map(h => {
+                  const daysEn = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+                  const daysAr = ["الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"];
+                  const day = currentLang === "ar" ? daysAr[h.day] : daysEn[h.day];
+                  return `
+                    <div class="flex items-center justify-between text-xs p-2 rounded-md" style="background: var(--bg-surface-subtle);">
+                      <span class="font-semibold text-primary">${day}</span>
+                      <span class="text-secondary" dir="ltr">${h.opensAt} – ${h.closesAt}</span>
+                    </div>
+                  `;
+                }).join("") || `<div class="text-xs text-muted">${currentLang === 'ar' ? 'لا توجد ساعات منشورة' : 'No hours published'}</div>`}
               </div>
             </section>
 
@@ -368,16 +414,18 @@ window.Qareeb.components.ProviderProfile = function() {
               <div class="flex flex-col gap-3">
                 ${provider.staff.map(member => {
                   const staffName = currentLang === "ar" ? member.nameAr : member.nameEn;
-                  const staffTitle = currentLang === "ar" ? member.titleAr : member.titleEn;
+                  const staffTitle = currentLang === "ar" ? (member.titleAr || "") : (member.titleEn || "");
 
                   return `
                     <div class="flex items-center gap-3 p-2 rounded-md" style="background: var(--bg-surface-subtle);">
-                      <img src="${member.image}" alt="${staffName}" style="width: 2.5rem; height: 2.5rem; border-radius: 50%; object-fit: cover;" />
+                      ${member.image
+                        ? `<img src="${member.image}" alt="${staffName}" style="width: 2.5rem; height: 2.5rem; border-radius: 50%; object-fit: cover;" />`
+                        : `<div style="width: 2.5rem; height: 2.5rem; border-radius: 50%; background: var(--primary-subtle); color: var(--primary); display: flex; align-items: center; justify-content: center; font-weight: 700;">${staffName.charAt(0)}</div>`}
                       <div class="flex-1">
                         <div class="text-xs font-bold text-primary">${staffName}</div>
                         <div class="text-xs text-muted">${staffTitle}</div>
                       </div>
-                      <span class="text-xs font-bold text-brand">★ ${member.rating}</span>
+                      ${member.rating ? `<span class="text-xs font-bold text-brand">★ ${member.rating}</span>` : ''}
                     </div>
                   `;
                 }).join("")}
