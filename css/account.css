@@ -1,0 +1,20 @@
+.account-bar { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding-block:1rem; border-bottom:1px solid var(--border-default); }
+.account-dialog { color:var(--text-primary); background:var(--bg-surface); border:1px solid var(--border-default); border-radius:1rem; padding:0; margin:auto; width:min(640px, calc(100% - 1.5rem)); max-height:90dvh; overflow:auto; }
+.account-dialog::backdrop { background:rgba(0,0,0,.65); }
+.account-shell { padding:clamp(1rem,4vw,2rem); display:flex; flex-direction:column; gap:1rem; }
+.account-heading { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; }
+.account-heading h2 { font-size:1.35rem; font-weight:800; }
+.account-dialog fieldset { border:0; padding:0; display:flex; flex-direction:column; gap:1rem; min-width:0; }
+.account-field { display:flex; flex-direction:column; gap:.4rem; font-weight:600; }
+.account-actions { display:flex; flex-wrap:wrap; gap:.5rem; }
+.account-error, .account-notice, .account-otp { padding:1rem; border:1px solid var(--border-default); border-radius:.75rem; overflow-wrap:anywhere; }
+.account-error { border-color:#dc2626; }
+.account-notice { border-color:#059669; }
+.account-secret { display:block; overflow-wrap:anywhere; user-select:all; padding:1rem; border:1px solid var(--border-default); }
+.account-dialog button:disabled { opacity:.6; cursor:wait; }
+.account-dialog :focus-visible { outline:3px solid var(--brand-primary, #d97706); outline-offset:3px; }
+.account-application { padding:1rem; border:1px solid var(--border-default); border-radius:.75rem; display:flex; flex-direction:column; gap:.5rem; background:var(--bg-surface); }
+.account-list { display:flex; flex-direction:column; gap:.75rem; }
+.account-list-item { padding:.85rem 1rem; border:1px solid var(--border-default); border-radius:.75rem; display:flex; flex-direction:column; gap:.35rem; background:var(--bg-surface); }
+.account-dialog textarea.form-input { resize:vertical; min-height:3.5rem; font:inherit; }
+.account-dialog input.form-input { font:inherit; }

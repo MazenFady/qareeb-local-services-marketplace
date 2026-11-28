@@ -6,14 +6,15 @@ window.Qareeb.components = window.Qareeb.components || {};
 
 window.Qareeb.components.SearchResults = function() {
   const { currentLang, searchFilters } = window.Qareeb.state;
-  const { categories, providers } = window.Qareeb.mockData;
+  const { categories, providers } = (window.Qareeb.discovery?.catalog() || window.Qareeb.mockData);
   const t = window.Qareeb.t;
 
   // Filter application logic
   let filtered = [...providers].filter(p => {
     // Category filter
     if (searchFilters.category && searchFilters.category !== "all") {
-      if (p.category !== searchFilters.category) return false;
+      const providerCategories = p.categories || [p.category];
+      if (!providerCategories.includes(searchFilters.category)) return false;
     }
 
     // Text query filter

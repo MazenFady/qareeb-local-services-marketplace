@@ -142,6 +142,9 @@ window.Qareeb = window.Qareeb || {};
       }
       window.scrollTo({ top: 0, behavior: "smooth" });
       notify();
+      if (view === "provider-detail" && providerId) {
+        window.Qareeb.discovery?.loadProvider(providerId).then(notify).catch(() => {});
+      }
     },
 
     setProviderTab(tab) {
@@ -160,6 +163,7 @@ window.Qareeb = window.Qareeb || {};
     updateSearchFilters(newFilters) {
       state.searchFilters = { ...state.searchFilters, ...newFilters };
       notify();
+      window.Qareeb.discovery?.onFiltersChanged();
     },
 
     resetSearchFilters() {
@@ -173,12 +177,15 @@ window.Qareeb = window.Qareeb || {};
         sortBy: "recommended"
       };
       notify();
+      window.Qareeb.discovery?.onFiltersChanged();
     },
 
     // Booking Wizard Actions
     openBookingModal(providerId, preselectedService = null) {
-      const provider = window.Qareeb.mockData.providers.find(p => p.id === providerId) || window.Qareeb.mockData.providers[0];
-      const initialServices = preselectedService ? [preselectedService] : [provider.services[0]];
+      const provider = window.Qareeb.discovery?.providerFor(providerId)
+        || window.Qareeb.mockData.providers.find(p => p.id === providerId)
+        || window.Qareeb.mockData.providers[0];
+      const initialServices = preselectedService ? [preselectedService] : (provider.services[0] ? [provider.services[0]] : []);
 
       state.bookingModal = {
         isOpen: true,
@@ -226,8 +233,10 @@ window.Qareeb = window.Qareeb || {};
     },
 
     confirmBooking() {
-      const provider = window.Qareeb.mockData.providers.find(p => p.id === state.bookingModal.providerId) || window.Qareeb.mockData.providers[0];
-      const specialist = provider.staff.find(s => s.id === state.bookingModal.selectedSpecialistId);
+      const provider = window.Qareeb.discovery?.providerFor(state.bookingModal.providerId)
+        || window.Qareeb.mockData.providers.find(p => p.id === state.bookingModal.providerId)
+        || window.Qareeb.mockData.providers[0];
+      const specialist = (provider.staff || []).find(s => s.id === state.bookingModal.selectedSpecialistId);
       const specNameEn = specialist ? specialist.nameEn : "Omar Al-Mansoor (Any Specialist)";
       const specNameAr = specialist ? specialist.nameAr : "عمر المنصور (أي أخصائي متاح)";
 
@@ -481,6 +490,7 @@ window.Qareeb = window.Qareeb || {};
   window.Qareeb.state = state;
   window.Qareeb.actions = actions;
   window.Qareeb.t = t;
+  window.Qareeb.notify = notify;
   window.Qareeb.subscribe = function(fn) {
     listeners.push(fn);
   };

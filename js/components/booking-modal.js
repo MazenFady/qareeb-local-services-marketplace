@@ -8,10 +8,11 @@ window.Qareeb.components.BookingModal = function() {
   const { bookingModal, currentLang } = window.Qareeb.state;
   if (!bookingModal || !bookingModal.isOpen) return "";
 
-  const { providers } = window.Qareeb.mockData;
   const t = window.Qareeb.t;
 
-  const provider = providers.find(p => p.id === bookingModal.providerId) || providers[0];
+  const provider = window.Qareeb.discovery?.providerFor(bookingModal.providerId)
+    || window.Qareeb.mockData.providers.find(p => p.id === bookingModal.providerId)
+    || window.Qareeb.mockData.providers[0];
   const providerName = currentLang === "ar" ? provider.nameAr : provider.nameEn;
 
   const step = bookingModal.step; // 1 to 5
@@ -139,7 +140,7 @@ window.Qareeb.components.BookingModal = function() {
               <!-- Named Specialists -->
               ${provider.staff.map(member => {
                 const staffName = currentLang === "ar" ? member.nameAr : member.nameEn;
-                const staffTitle = currentLang === "ar" ? member.titleAr : member.titleEn;
+                const staffTitle = currentLang === "ar" ? (member.titleAr || "") : (member.titleEn || "");
                 const isSelected = bookingModal.selectedSpecialistId === member.id;
 
                 return `
@@ -149,10 +150,12 @@ window.Qareeb.components.BookingModal = function() {
                     onclick="window.Qareeb.actions.updateBookingField('selectedSpecialistId', '${member.id}')"
                   >
                     <div class="flex items-center gap-3">
-                      <img src="${member.image}" alt="${staffName}" style="width: 2.5rem; height: 2.5rem; border-radius: 50%; object-fit: cover;" />
+                      ${member.image
+                        ? `<img src="${member.image}" alt="${staffName}" style="width: 2.5rem; height: 2.5rem; border-radius: 50%; object-fit: cover;" />`
+                        : `<div style="width: 2.5rem; height: 2.5rem; border-radius: 50%; background: var(--primary-subtle); color: var(--primary); display: flex; align-items: center; justify-content: center; font-weight: 700;">${staffName.charAt(0)}</div>`}
                       <div>
                         <div class="font-bold text-sm text-primary">${staffName}</div>
-                        <div class="text-xs text-muted">${staffTitle} • <span class="text-brand font-semibold">★ ${member.rating}</span></div>
+                        <div class="text-xs text-muted">${staffTitle}${member.rating ? ` • <span class="text-brand font-semibold">★ ${member.rating}</span>` : ''}</div>
                       </div>
                     </div>
                     <input type="radio" name="specialist" ${isSelected ? 'checked' : ''} style="accent-color: var(--primary);" />
